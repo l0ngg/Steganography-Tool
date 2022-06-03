@@ -2,25 +2,19 @@
 
 # PIL module is used to extract
 # pixels of image and modify it
+from imp import new_module
 from PIL import Image
-
-# Convert encoding data into 8-bit binary
-# form using ASCII value of characters
-def genData(data):
-
-		# list of binary codes
-		# of given data
-		newd = []
-
-		for i in data:
-			newd.append(format(ord(i), '08b'))
-		return newd
 
 # Pixels are modified according to the
 # 8-bit binary data and finally returned
-def modPix(pix, data):
+def mod_pixel(pix, data):
 
-	datalist = genData(data)
+	# Convert encoding data into 8-bit binary
+	# form using ASCII value of characters
+	datalist = []
+	for i in data:
+		datalist.append(format(ord(i), '08b'))
+
 	lendata = len(datalist)
 	imdata = iter(pix)
 
@@ -67,7 +61,7 @@ def encode_enc(newimg, data):
 	w = newimg.size[0]
 	(x, y) = (0, 0)
 
-	for pixel in modPix(newimg.getdata(), data):
+	for pixel in mod_pixel(newimg.getdata(), data):
 
 		# Putting modified pixels in the new image
 		newimg.putpixel((x, y), pixel)
@@ -78,23 +72,19 @@ def encode_enc(newimg, data):
 			x += 1
 
 # Encode text data into image
-def encode():
-	img = input("Enter image name(with extension) : ")
+def encode_lsb(img, msg, res):
 	image = Image.open(img, 'r')
 
-	data = input("Enter data to be encoded : ")
-	if (len(data) == 0):
+	if (len(msg) == 0):
 		raise ValueError('Data is empty')
 
 	newimg = image.copy()
-	encode_enc(newimg, data)
+	encode_enc(newimg, msg)
 
-	new_img_name = input("Enter the name of new image(with extension) : ")
-	newimg.save(new_img_name, str(new_img_name.split(".")[1].upper()))
+	newimg.save(res, str(res.split(".")[1].upper()))
 
 # Decode the text data in the image
-def decode():
-	img = input("Enter image name(with extension) : ")
+def decode_lsb(img):
 	image = Image.open(img, 'r')
 
 	data = ''
@@ -121,10 +111,14 @@ def main():
     ":: Welcome to my LSB tool, what do you want to do ::\n"
 	"1. Encode\n2. Decode\n"))
 	if (a == 1):
-		encode()
+		img = input('Enter the file path(with extension):\n')
+		msg = input('Enter the message:\n')
+		new_img_name = input("Enter the name of new image(with extension) :\n")
+		encode_lsb(img, msg, new_img_name)
 
 	elif (a == 2):
-		print("Decoded Word : " + decode())
+		img = input("Enter image name(with extension) : ")
+		print("Decoded Word : " + decode_lsb(img))
 	else:
 		raise Exception("Enter correct input")
 
