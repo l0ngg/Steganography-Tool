@@ -45,7 +45,7 @@ class Window(QWidget):
         ret = msg.exec()
     
     def open_file(self):
-        self.path = QFileDialog.getOpenFileName(self, 'Open a file', '','All Files (*.*)')
+        self.path = QFileDialog.getOpenFileName(self, 'Open a file', '','Images (*.png)')
         self.input_display.setText( 'Selected: ' + self.path[0].split('/')[-1])
 
 app = QApplication(sys.argv)
