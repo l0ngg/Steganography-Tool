@@ -1,9 +1,6 @@
 from PIL import Image
 
-im = Image.open(r"D:\Steganography\Code\Steganography-Tool\result.png")
-im_2 = Image.open(r"D:\Steganography\Code\Steganography-Tool\new_result.png")
-
-def steganalyse(img: im) -> Image.Image:
+def steganalyse(img) -> Image.Image:
     """
     Steganlysis of the LSB technique.
     """
@@ -27,12 +24,15 @@ def steganalyse(img: im) -> Image.Image:
             encoded.putpixel((col, row), (r, g, b))
     return encoded
 
+if __name__ == '__main__' :
+    im = Image.open(r"D:\Steganography\Code\Steganography-Tool\result.png")
+    im_2 = Image.open(r"D:\Steganography\Code\Steganography-Tool\new_result.png")
 
-new_im = steganalyse(im)
-new_im.show()
+    new_im = steganalyse(im)
+    new_im.show()
 
-new_im_2 = steganalyse(im_2)
-new_im_2.show()
+    new_im_2 = steganalyse(im_2)
+    new_im_2.show()
 
 
 
