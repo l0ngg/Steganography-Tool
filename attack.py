@@ -14,7 +14,7 @@ class Window(QWidget):
         self.path = ''
         
         super().__init__()
-        self.setWindowTitle("Image LSB Decoder")
+        self.setWindowTitle("Histogram attacker")
  
         layout = QGridLayout()
         self.setLayout(layout)
@@ -27,7 +27,7 @@ class Window(QWidget):
         self.input_display.setFixedWidth(250)
         self.input_display.setWordWrap(True)
  
-        decode_button = QPushButton("Decode")
+        decode_button = QPushButton("Analyse")
         decode_button.setFixedSize(80,30)
         decode_button.clicked.connect(self.show_popup)
         
