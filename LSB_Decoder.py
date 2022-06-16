@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import (
 )
 from functions.LSB import decode_lsb
 import sys
+from itsdangerous import base64_decode, base64_encode
 
 class Window(QWidget):
     def __init__(self):
@@ -36,6 +37,7 @@ class Window(QWidget):
             msg = QMessageBox(parent=self, text="No file was selected")
             msg.setIcon(QMessageBox.Icon.Information)
             msg.setText("The decoded message is:\n" + message)
+            print( base64_decode(message) )
         else:
             msg = QMessageBox(parent=self, text="No file was selected")
             msg.setWindowTitle('Result')

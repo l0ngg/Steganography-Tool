@@ -14,7 +14,7 @@ class Window(QWidget):
         self.path = ''
         
         super().__init__()
-        self.setWindowTitle("Histogram attacker")
+        self.setWindowTitle("Simple scan attacker")
  
         layout = QGridLayout()
         self.setLayout(layout)
