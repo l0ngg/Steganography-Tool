@@ -12,7 +12,7 @@ def generate_key_pair():
     file_out.close()
 
     public_key = key_pair.publickey().export_key()
-    file_out = open("receiver.pem", "wb")
+    file_out = open("public.pem", "wb")
     file_out.write(public_key)
     file_out.close()
     return key_pair
@@ -40,22 +40,21 @@ def main():
     # generate_key_pair()
 
     msg = 'secret'
-    recipient_key = RSA.import_key(open("D:/github repos/Steganography-Tool/receiver.pem").read())
+    recipient_key = RSA.import_key(open("D:/github repos/Steganography-Tool/public.pem").read())
     print(f"Public key:  (n={hex(recipient_key.n)}, e={hex(recipient_key.e)})")
     # print(recipient_key.decode('ascii'))
     # encrypted = encrypt_dome(msg, recipient_key)
     encryptor = PKCS1_OAEP.new(recipient_key)
     encrypted = encryptor.encrypt(msg.encode('utf-8'))
-    print("Encrypted:", binascii.hexlify(encrypted))
-    print("base64 encoded:", base64_encode(encrypted))
 
     privKeyPEM = RSA.import_key(open("private.pem").read())
+    print(f"Private key: (n={hex(privKeyPEM.n)}, d={hex(privKeyPEM.d)})")
     # print(privKeyPEM.decode('ascii'))
     # print(encrypted)
     decrypted = decrypt_dome(encrypted, privKeyPEM)
     # decryptor = PKCS1_OAEP.new(privKeyPEM)
     # decrypted = decryptor.decrypt(encrypted)
-    
+    print("Encrypted:", binascii.hexlify(encrypted))
     print('Decrypted:', decrypted.decode('utf-8'))
 if __name__ == '__main__':
     main()

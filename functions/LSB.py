@@ -37,7 +37,7 @@ def mod_pixel(pix, data):
 				else:
 					pix[j] += 1
 
-		# Eighth pixel of every set tells
+		# Last pixel of every set tells
 		# whether to stop ot read further.
 		# 0 means keep reading; 1 means thec
 		# message is over.

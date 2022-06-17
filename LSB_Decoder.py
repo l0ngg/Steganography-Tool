@@ -37,7 +37,7 @@ class Window(QWidget):
             msg = QMessageBox(parent=self, text="No file was selected")
             msg.setIcon(QMessageBox.Icon.Information)
             msg.setText("The decoded message is:\n" + message)
-            print( base64_decode(message) )
+            # print( base64_decode(message) )
         else:
             msg = QMessageBox(parent=self, text="No file was selected")
             msg.setWindowTitle('Result')

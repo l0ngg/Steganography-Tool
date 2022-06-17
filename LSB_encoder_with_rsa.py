@@ -132,7 +132,7 @@ class Window(QWidget):
         generate_key_pair()
         # with open('keys.txt', 'w', encoding='utf-8') as fil:
         #     fil.write( str(pub_key) + "\n" + str(priv_key))
-        msg2 = QMessageBox(parent = self, text = "The keys are written into private.pem and receiver.pem")
+        msg2 = QMessageBox(parent = self, text = "The keys are written into private.pem and public.pem")
         msg2.setWindowTitle("Keys generated")
         msg2.setIcon(QMessageBox.Icon.Information)
         msg2.setStandardButtons(QMessageBox.StandardButton.Ok)
